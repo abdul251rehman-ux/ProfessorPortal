@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
 
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const admin = createAdminClient();
 
-  const { data, error } = await supabase
+  const { data, error } = await admin
     .from("profiles")
     .select("id, name, phone, university_name, university_logo_url")
     .eq("email", email)
