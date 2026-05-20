@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Administrator/Desktop/**)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
